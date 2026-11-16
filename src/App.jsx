@@ -6,6 +6,7 @@ import BookingPolicy from './components/BookingPolicy'
 import Booking from './components/Booking'
 import WhyChooseUs from './components/WhyChooseUs'
 import Contact from './components/Contact'
+import SocialFollow from './components/SocialFollow'
 import Footer from './components/Footer'
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
         <BookingPolicy />
         <Booking />
         <Contact />
+        <SocialFollow />
       </main>
       <Footer />
     </div>

@@ -1,4 +1,4 @@
-import { Phone, MapPin, MessageCircle, Instagram, Facebook, Mail, Music2 } from 'lucide-react'
+import { Phone, MapPin, MessageCircle } from 'lucide-react'
 
 export default function Contact() {
   return (
@@ -60,56 +60,6 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Social Media */}
-        <div className="mt-10 bg-white rounded-3xl p-8 border border-pink-100 shadow-md">
-          <h3 className="font-display text-2xl font-bold text-plum text-center mb-6">
-            Follow Us on Social Media
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="https://www.instagram.com/cody__mosco_g?obrf=MXVheGV1bjZ3aHJkNw%3D%3D&utm_source=qr"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit Beauty by Cody on Instagram"
-              className="flex items-center gap-2.5 px-5 py-3 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white font-semibold text-sm rounded-full shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
-            >
-              <Instagram className="w-4 h-4" aria-hidden="true" />
-              Instagram
-            </a>
-            <a
-              href="https://www.facebook.com/share/1BzKjiKjbS/?mibextid=wwXIfr"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit Beauty by Cody on Facebook"
-              className="flex items-center gap-2.5 px-5 py-3 bg-[#1877F2] text-white font-semibold text-sm rounded-full shadow-md transition-all duration-200 hover:-translate-y-1 hover:bg-[#166FE5] hover:shadow-lg"
-            >
-              <Facebook className="w-4 h-4" aria-hidden="true" />
-              Facebook
-            </a>
-            <a
-              href="https://www.tiktok.com/@codymosco1"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit Beauty by Cody on TikTok"
-              className="flex items-center gap-2.5 px-5 py-3 bg-[#010101] text-white font-semibold text-sm rounded-full shadow-md transition-all duration-200 hover:-translate-y-1 hover:bg-[#242424] hover:shadow-lg"
-            >
-              <Music2 className="w-4 h-4" aria-hidden="true" />
-              TikTok <span className="text-xs opacity-70">@codymosco1</span>
-            </a>
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=ayuenmosco50%40gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex max-w-full items-center gap-2.5 px-5 py-3 bg-plum text-white font-semibold text-sm rounded-full hover:bg-plum/80 transition-colors shadow-md"
-            >
-              <Mail className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-              <span className="min-w-0 break-all">ayuenmosco50@gmail.com</span>
-            </a>
-          </div>
-          <p className="text-center text-xs text-muted/50 mt-5 italic">
-            Follow Beauty by Cody across our social media platforms.
-          </p>
-        </div>
       </div>
     </section>
   )
