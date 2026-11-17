@@ -3,8 +3,8 @@ import { createClient } from '@supabase/supabase-js'
 let client
 
 export function getSupabaseServerClient() {
-  const supabaseUrl = process.env.VITE_SUPABASE_URL?.trim()
-  const supabasePublishableKey = process.env.VITE_SUPABASE_ANON_KEY?.trim()
+  const supabaseUrl = process.env.SUPABASE_URL?.trim()
+  const supabasePublishableKey = process.env.SUPABASE_PUBLISHABLE_KEY?.trim()
 
   if (!supabaseUrl || !supabasePublishableKey) {
     const error = new Error('Supabase server environment is not configured.')
