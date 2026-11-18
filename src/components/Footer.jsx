@@ -1,4 +1,4 @@
-import { Sparkles, Instagram, Facebook, Music2 } from 'lucide-react'
+import { Instagram, Facebook, Music2 } from 'lucide-react'
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -21,9 +21,6 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-5">
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center shadow-md">
-                <Sparkles className="w-4 h-4 text-white" />
-              </div>
               <span className="font-display text-2xl font-bold">
                 Beauty by <span className="text-pink-200">Cody</span>
               </span>

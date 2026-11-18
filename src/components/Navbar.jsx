@@ -41,9 +41,11 @@ export default function Navbar() {
             onClick={(e) => { e.preventDefault(); handleNavClick('#home') }}
             className="flex items-center gap-2 group"
           >
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-rose flex items-center justify-center shadow-md group-hover:shadow-pink-300 transition-shadow">
-              <Sparkles className="w-4 h-4 text-white" />
-            </div>
+            <img
+              src="/images/beauty-by-cody-logo.png"
+              alt="Beauty by Cody logo"
+              className="w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain flex-shrink-0"
+            />
             <div className="leading-tight">
               <span className="font-display text-xl font-bold text-plum tracking-wide">Beauty by</span>
               <span className="font-display text-xl font-bold text-rose tracking-wide"> Cody</span>
