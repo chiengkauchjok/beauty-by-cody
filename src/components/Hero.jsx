@@ -1,4 +1,4 @@
-import { Sparkles, ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 
 export default function Hero() {
   const scrollToServices = () => {
@@ -25,7 +25,6 @@ export default function Hero() {
           <div className="text-center lg:text-left space-y-6 animate-fade-in">
             {/* Tagline badge */}
             <div className="inline-flex items-center gap-2 bg-white border border-pink-200 text-rose px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-gold" />
               Look Good, Feel Amazing.
             </div>
 
@@ -48,7 +47,6 @@ export default function Hero() {
                 onClick={scrollToBooking}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-rose text-white font-semibold rounded-full shadow-xl shadow-pink-300/40 hover:bg-rose hover:shadow-pink-400/50 transition-all duration-300 hover:-translate-y-1 text-base"
               >
-                <Sparkles className="w-4 h-4" />
                 Book Your Appointment
               </button>
               <button
@@ -71,13 +69,8 @@ export default function Hero() {
             <div className="absolute -top-6 -left-6 w-20 h-20 bg-gold/20 rounded-full blur-xl animate-float pointer-events-none" />
             <div className="absolute -bottom-8 -right-4 w-32 h-32 bg-primary/15 rounded-full blur-2xl animate-float pointer-events-none" style={{ animationDelay: '1s' }} />
 
-            {/* Gold accent ring */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-[340px] h-[420px] sm:w-[380px] sm:h-[460px] rounded-3xl border-2 border-gold/30 translate-x-4 translate-y-4" />
-            </div>
-
             {/* Image container */}
-            <div className="relative w-[320px] h-[400px] sm:w-[360px] sm:h-[440px] rounded-3xl overflow-hidden shadow-2xl shadow-pink-300/40 border-4 border-white">
+            <div className="relative w-[320px] h-[400px] sm:w-[360px] sm:h-[440px] rounded-3xl overflow-hidden shadow-2xl shadow-pink-300/40">
               <img
                 src="/images/cody-hero.jpeg"
                 alt="Cody, professional makeup artist"

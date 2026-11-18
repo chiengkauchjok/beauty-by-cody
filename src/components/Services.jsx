@@ -1,5 +1,3 @@
-import { Sparkles } from 'lucide-react'
-
 const services = [
   {
     id: 'full-glam',
@@ -58,7 +56,6 @@ export default function Services() {
         {/* Section Header */}
         <div className="text-center mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 bg-blush text-rose px-4 py-1.5 rounded-full text-sm font-medium">
-            <Sparkles className="w-3.5 h-3.5 text-gold" />
             Our Expertise
           </div>
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-plum">

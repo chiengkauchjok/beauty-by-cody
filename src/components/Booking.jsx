@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Sparkles, AlertCircle, CheckCircle2 } from 'lucide-react'
+import { AlertCircle, CheckCircle2 } from 'lucide-react'
 import { submitBooking } from '../lib/bookings.js'
 
 const services = [
@@ -161,7 +161,6 @@ export default function Booking({ selectedService = '', onServiceChange }) {
         {/* Header */}
         <div className="text-center mb-12 space-y-4">
           <div className="inline-flex items-center gap-2 bg-blush text-rose px-4 py-1.5 rounded-full text-sm font-medium">
-            <Sparkles className="w-3.5 h-3.5 text-gold" />
             Book Your Look
           </div>
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-plum">
@@ -317,7 +316,6 @@ export default function Booking({ selectedService = '', onServiceChange }) {
               disabled={isSubmitting}
               className="w-full py-4 bg-rose text-white font-semibold text-base rounded-full shadow-lg shadow-pink-300/40 hover:bg-rose hover:shadow-pink-400/50 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2"
             >
-              <Sparkles className="w-4 h-4" />
               {isSubmitting ? 'Submitting...' : 'Request Appointment'}
             </button>
 

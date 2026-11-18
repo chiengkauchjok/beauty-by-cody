@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Menu, X, Sparkles } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -74,7 +74,6 @@ export default function Navbar() {
               onClick={(e) => { e.preventDefault(); handleNavClick('#booking') }}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-rose text-white text-sm font-semibold rounded-full shadow-lg shadow-pink-300/40 hover:bg-rose hover:shadow-pink-400/50 transition-all duration-300 hover:-translate-y-0.5"
             >
-              <Sparkles className="w-3.5 h-3.5" />
               Book Appointment
             </a>
           </div>

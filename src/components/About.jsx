@@ -1,4 +1,4 @@
-import { Heart, Award } from 'lucide-react'
+import { Award } from 'lucide-react'
 
 export default function About() {
   return (
@@ -8,26 +8,13 @@ export default function About() {
 
           {/* Left – Image */}
           <div className="relative flex justify-center">
-            {/* Decorative ring */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-[300px] h-[380px] rounded-3xl border-2 border-gold/30 translate-x-5 translate-y-5" />
-            </div>
-
             {/* Photo container */}
-            <div className="relative w-[280px] h-[360px] sm:w-[300px] sm:h-[380px] rounded-3xl overflow-hidden shadow-2xl shadow-pink-300/40 border-4 border-white">
+            <div className="relative w-[280px] h-[360px] sm:w-[300px] sm:h-[380px] rounded-3xl overflow-hidden shadow-2xl shadow-pink-300/40">
               <img
                 src="/images/ayeun.jpeg"
                 alt="Portrait of Cody"
                 className="w-full h-full object-cover object-center"
               />
-            </div>
-
-            {/* Floating badge */}
-            <div className="absolute -bottom-4 -right-2 bg-rose text-white rounded-2xl shadow-xl px-4 py-3">
-              <div className="flex items-center gap-1.5">
-                <Heart className="w-4 h-4" fill="white" />
-                <span className="font-semibold text-sm">Beauty, made personal</span>
-              </div>
             </div>
 
           </div>
