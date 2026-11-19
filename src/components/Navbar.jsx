@@ -34,7 +34,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
           <a
             href="#home"
@@ -42,9 +42,9 @@ export default function Navbar() {
             className="flex items-center gap-2 group"
           >
             <img
-              src="/images/beauty-by-cody-logo.png"
+              src="/images/beauty-by-cody-logo.svg"
               alt="Beauty by Cody logo"
-              className="w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain flex-shrink-0"
+              className="h-[65px] w-auto max-w-none object-contain flex-shrink-0 md:h-[85px]"
             />
             <div className="leading-tight">
               <span className="font-display text-xl font-bold text-plum tracking-wide">Beauty by</span>
