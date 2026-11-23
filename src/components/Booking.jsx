@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { AlertCircle, CheckCircle2 } from 'lucide-react'
-import { submitBooking } from '../lib/bookings.js'
+import { useEffect, useState } from 'react'
+import { MessageCircle } from 'lucide-react'
 
 const services = [
   { value: '', label: 'Select a service...' },
@@ -32,26 +31,17 @@ function getLocalDate() {
   return date.toISOString().slice(0, 10)
 }
 
-function createBookingPayload(form) {
-  return {
-    fullName: form.fullName.trim(),
-    phone: form.phone.trim(),
-    service: form.service,
-    date: form.date,
-    time: form.time,
-    location: form.location.trim() || null,
-    notes: form.notes.trim() || null,
-    policyAgreed: form.policyAgreed,
-  }
+function formatTime(time) {
+  const [hours, minutes] = time.split(':').map(Number)
+  const period = hours >= 12 ? 'PM' : 'AM'
+  return `${hours % 12 || 12}:${String(minutes).padStart(2, '0')} ${period}`
 }
 
 export default function Booking({ selectedService = '', onServiceChange }) {
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
-  const [request, setRequest] = useState(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [submissionError, setSubmissionError] = useState('')
-  const submissionLock = useRef(false)
+  const [bookingNotice, setBookingNotice] = useState('')
 
   useEffect(() => {
     if (selectedService) {
@@ -88,11 +78,11 @@ export default function Booking({ selectedService = '', onServiceChange }) {
     if (name === 'service') onServiceChange?.(value)
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: undefined }))
     setSubmissionError('')
+    setBookingNotice('')
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    if (submissionLock.current) return
 
     const errs = validate()
     if (Object.keys(errs).length > 0) {
@@ -100,59 +90,27 @@ export default function Booking({ selectedService = '', onServiceChange }) {
       return
     }
 
-    submissionLock.current = true
-    setIsSubmitting(true)
     setSubmissionError('')
+    const serviceName = services.find((service) => service.value === form.service)?.label
+    const message = [
+      'Beauty by Cody appointment request',
+      `Full name: ${form.fullName.trim()}`,
+      `Phone number: ${form.phone.trim()}`,
+      `Makeup service: ${serviceName}`,
+      `Preferred date: ${form.date}`,
+      `Preferred time: ${formatTime(form.time)}`,
+      `Location: ${form.location.trim() || 'Not provided'}`,
+      `Additional notes: ${form.notes.trim() || 'None'}`,
+    ].join('\n')
+    const whatsappUrl = `https://wa.me/211920207498?text=${encodeURIComponent(message)}`
+    const whatsappWindow = window.open(whatsappUrl, '_blank')
 
-    try {
-      await submitBooking(createBookingPayload(form))
-      setRequest({ fullName: form.fullName.trim() })
-    } catch (error) {
-      setSubmissionError(
-        error instanceof Error
-          ? error.message
-          : "We couldn't confirm that your request was saved. Please contact us before trying again.",
-      )
-    } finally {
-      submissionLock.current = false
-      setIsSubmitting(false)
+    if (whatsappWindow) {
+      whatsappWindow.opener = null
+      setBookingNotice('WhatsApp is open with your request. Please press Send in WhatsApp to submit it; your appointment is not confirmed yet.')
+    } else {
+      setSubmissionError('WhatsApp could not be opened. Please allow pop-ups for this site and try again.')
     }
-  }
-
-  const handleReset = () => {
-    setForm(initialForm)
-    setErrors({})
-    setRequest(null)
-    setSubmissionError('')
-    submissionLock.current = false
-    onServiceChange?.('')
-  }
-
-  if (request) {
-    return (
-      <section id="booking" className="py-24 bg-gradient-to-br from-lightPink to-white">
-        <div className="max-w-2xl mx-auto px-4 text-center space-y-6">
-          <div className="w-20 h-20 mx-auto rounded-full bg-green-100 flex items-center justify-center">
-            <CheckCircle2 className="w-10 h-10 text-green-500" />
-          </div>
-          <h2 className="font-display text-3xl font-bold text-plum">Booking request submitted</h2>
-          <div className="bg-white rounded-2xl p-6 border border-pink-100 shadow-md text-left space-y-3">
-            <p className="text-muted leading-relaxed">
-              Your request has been saved, <span className="font-semibold text-rose">{request.fullName}</span>. It is pending and is not confirmed until the 50% non-refundable deposit is received and verified.
-            </p>
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-amber-700">
-                <span className="font-semibold">No appointment is confirmed.</span> Your booking remains pending until the 50% deposit is verified.
-              </p>
-            </div>
-          </div>
-          <button type="button" onClick={handleReset} className="px-6 py-3 bg-rose text-white rounded-full font-semibold hover:bg-rose transition-colors">
-            Submit Another Request
-          </button>
-        </div>
-      </section>
-    )
   }
 
   return (
@@ -167,7 +125,7 @@ export default function Booking({ selectedService = '', onServiceChange }) {
             Request an <span className="text-primary italic">Appointment</span>
           </h2>
           <p className="text-muted max-w-md mx-auto leading-relaxed">
-            Share your preferred date and look. Your request will remain pending until the deposit is verified.
+            Share your preferred date and look, then send your request to us on WhatsApp.
           </p>
         </div>
 
@@ -313,10 +271,10 @@ export default function Booking({ selectedService = '', onServiceChange }) {
             {/* Submit */}
             <button
               type="submit"
-              disabled={isSubmitting}
               className="w-full py-4 bg-rose text-white font-semibold text-base rounded-full shadow-lg shadow-pink-300/40 hover:bg-rose hover:shadow-pink-400/50 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2"
             >
-              {isSubmitting ? 'Submitting...' : 'Request Appointment'}
+              <MessageCircle className="w-5 h-5" aria-hidden="true" />
+              Book Appointment
             </button>
 
             {submissionError && (
@@ -325,8 +283,8 @@ export default function Booking({ selectedService = '', onServiceChange }) {
               </p>
             )}
 
-            <p className="text-center text-xs text-muted/70">
-              Your request will remain pending until the 50% deposit is verified. An appointment is not confirmed before then.
+            <p role="status" className="text-center text-sm text-muted">
+              {bookingNotice || 'WhatsApp will open with your details. Please press Send in WhatsApp to submit your request; your appointment is not confirmed automatically.'}
             </p>
           </form>
         </div>
